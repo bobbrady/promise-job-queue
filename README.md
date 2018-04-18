@@ -26,16 +26,18 @@ const finished = [];
 
 // Your Job function with data input
 function job(data) {
-  return new Promise(function(resolve, reject) {
-		setTimeout(function() {
-			resolve(data);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data);
       finished.push(data);
-		}, Math.random() * 500);
-	});
+     }, Math.random() * 500);
+    });
 }
 
+// Construct your job queue, limit concurrent running jobs to a max of 2
 const queue = new PromiseJobQueue(job, 2);
 
+// Submit a job burst
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 Promise.all(
   data.map(item => queue.push(item))

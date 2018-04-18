@@ -1,0 +1,16 @@
+{
+  "name": "promise-queue",
+  "version": "1.0.0",
+  "description": "a queue for executing promises concurrently",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "queue",
+    "promise",
+    "concurrent"
+  ],
+  "author": "Bob Brady",
+  "license": "MIT"
+}

@@ -18,12 +18,9 @@ class PromiseQueue {
   }
 
   _run() {
-    //console.log('starting jobs length: ', this._jobs.length);
     if (this._queue.length < this._max) {
       this._queue.push(...this._jobs.splice(0, this._max - this._queue.length));
     }
-    //console.log("queue length:", this._queue.length);
-    //console.log("job length after queued:", this._jobs.length);
 
     this._queue.forEach( job => {
       if (!job.running) {
@@ -37,29 +34,32 @@ class PromiseQueue {
   }
 
   _next(job) {
-    let cnt = 0;
-    this._queue.forEach( job => job.running ? cnt++ : null);
-    console.log(`Queue length: ${this._queue.length}, running: ${cnt}`);
     const jobIdx = this._queue.indexOf(job);
     this._queue.splice(jobIdx, 1);
-    console.log(`Job ${job.data} completed @idx ${jobIdx}, queue length: ${this._queue.length}`);
     if (this._jobs.length > 0 || this._queue.length > 0) {
       this._run();
     } else {
       this._progress = false;
     }
   }
+
+  get size() {
+    return this._queue.length;
+  }
+
+  get running() {
+    let cnt = 0;
+    this._queue.forEach( job => job.running ? cnt++ : null);
+    return cnt;
+  }
+
+  get max() {
+    return this._max;
+  }
+
+  get jobsRemaining() {
+    return this._jobs.length;
+  }
 }
 
 module.exports = PromiseQueue;
-
-function async(data) {
-  return new Promise((resolve, reject) => {
-    setTimeout( () => {
-      resolve(data);
-    }, Math.random() * 2000);
-  });
-}
-
-const queue = new PromiseQueue(async);
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map( item => queue.push(item));

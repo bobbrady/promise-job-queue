@@ -1,10 +1,11 @@
 const chai = require('chai');
 const should = chai.should();
 const PromiseQueue = require('../src/PromiseQueue');
+const request = require('request-promise-native');
 
 let queue, running, finished;
 
-function async (data) {
+function asyncSimple (data) {
 	return new Promise(function(resolve, reject) {
 		setTimeout(function() {
 			resolve(data);
@@ -14,9 +15,21 @@ function async (data) {
 	});
 }
 
+function asyncWeb (data) {
+  return request('http://www.google.com')
+    .then(function (htmlString) {
+        running.push(queue.running);
+        finished.push(data);
+        //console.log(`async resolved ${data}, queue running: ${queue.running}`);
+    })
+    .catch(function (err) {
+        console.log(`async err ${data}: ${err.message}`);
+    });
+}
+
 describe('PromiseQueue', () => {
   beforeEach( () => {
-		queue = new PromiseQueue(async);
+		queue = new PromiseQueue(asyncWeb);
     running = [];
     finished = [];
   });

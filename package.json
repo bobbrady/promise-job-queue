@@ -7,9 +7,19 @@
     "test": "mocha --timeout 300000"
   },
   "keywords": [
-    "queue",
     "promise",
-    "concurrent"
+    "promises",
+    "job",
+    "task",
+    "queue",
+    "enqueue",
+    "limit",
+    "limited",
+    "async",
+    "concurrency"
+    "concurrent",
+    "ratelimit",
+    "fifo"
   ],
   "author": "Bob Brady <bob@digibrady.com> (http://digibrady.com)",
   "license": "MIT",

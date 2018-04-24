@@ -1,8 +1,8 @@
 {
-  "name": "promise-queue",
+  "name": "promise-job-queue",
   "version": "1.0.0",
   "description": "a queue for executing promises concurrently",
-  "main": "index.js",
+  "main": "src/PromiseQueue.js",
   "scripts": {
     "test": "mocha --timeout 300000"
   },
@@ -11,8 +11,9 @@
     "promise",
     "concurrent"
   ],
-  "author": "Bob Brady",
+  "author": "Bob Brady <bob@digibrady.com> (http://digibrady.com)",
   "license": "MIT",
+  "repository": "github:bobbrady/promise-job-queue",
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.1.0",

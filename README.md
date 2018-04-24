@@ -18,7 +18,7 @@ This implementation has the benefit of being a true job queue design.  As each j
 * Push jobs onto the queue
 * Collect finished job data
 
-```
+```javascript
 const PromiseJobQueue = require('promise-job-queue');
 
 // Track finished jobs
@@ -42,6 +42,6 @@ const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
 Promise.all(
   data.map(item => queue.push(item))
 ).then(() => {
-  console.log('finished jobs', finsihed);
+  console.log('finished jobs', finished);
 });
 ```

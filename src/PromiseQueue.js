@@ -1,3 +1,5 @@
+'use strict';
+
 class PromiseQueue {
   constructor(fn, max) {
     this._jobs = [];
